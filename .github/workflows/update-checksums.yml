@@ -1,0 +1,80 @@
+name: Update Manifest Checksums
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'manifest.json'
+      - 'README.md'
+      - '.github/**'
+
+jobs:
+  update-checksums:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Recompute checksums
+        run: |
+          python3 << 'SCRIPT'
+          import hashlib, json, os
+
+          def file_checksum(path):
+              h = hashlib.sha256()
+              with open(path, 'rb') as f:
+                  for chunk in iter(lambda: f.read(8192), b''):
+                      h.update(chunk)
+              return 'sha256:' + h.hexdigest()
+
+          def dir_checksum(dir_path):
+              h = hashlib.sha256()
+              for root, dirs, files in os.walk(dir_path):
+                  dirs.sort()
+                  for fname in sorted(files):
+                      fpath = os.path.join(root, fname)
+                      rel = os.path.relpath(fpath, dir_path)
+                      h.update(rel.encode('utf-8'))
+                      with open(fpath, 'rb') as f:
+                          for chunk in iter(lambda: f.read(8192), b''):
+                              h.update(chunk)
+              return 'sha256:' + h.hexdigest()
+
+          with open('manifest.json', 'r') as f:
+              manifest = json.load(f)
+
+          updated = 0
+          for cat_name, cat_config in manifest.get('categories', {}).items():
+              repo_path = cat_config.get('path', '')
+              for item_path, item_meta in cat_config.get('items', {}).items():
+                  full_path = os.path.join(repo_path, item_path)
+                  if item_meta.get('is_directory') and os.path.isdir(full_path):
+                      new_cs = dir_checksum(full_path)
+                  elif os.path.isfile(full_path):
+                      new_cs = file_checksum(full_path)
+                  else:
+                      continue
+                  if new_cs != item_meta.get('checksum'):
+                      item_meta['checksum'] = new_cs
+                      updated += 1
+
+          if updated > 0:
+              from datetime import datetime, timezone
+              manifest['updated'] = datetime.now(timezone.utc).isoformat()
+              with open('manifest.json', 'w') as f:
+                  json.dump(manifest, f, indent=2)
+              print(f'Updated {updated} checksums')
+          else:
+              print('All checksums up to date')
+          SCRIPT
+
+      - name: Commit updated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git diff --cached --quiet || git commit -m "chore: auto-update manifest checksums"
+          git push

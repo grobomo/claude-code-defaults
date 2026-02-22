@@ -1,0 +1,29 @@
+# Sample MCP server configurations for super-manager
+# Copy entries you need into your project's servers.yaml
+# These are TEMPLATES -- you must configure credentials and paths for your environment
+
+# Example: Confluence wiki server
+# wiki-lite:
+#   command: python
+#   args: ["~/mcp/mcp-wiki-lite/server.py"]
+#   description: "Confluence wiki - documentation, runbooks, knowledge base"
+#   env:
+#     CONFLUENCE_URL: "https://your-org.atlassian.net/wiki"
+#     CONFLUENCE_EMAIL: "your-email@company.com"
+#     CONFLUENCE_API_TOKEN: "credential:wiki-lite/CONFLUENCE_API_TOKEN"
+
+# Example: Jira issue tracker
+# jira-lite:
+#   command: python
+#   args: ["~/mcp/mcp-jira-lite/server.py"]
+#   description: "Jira issues - bug tracking, feature requests, sprints"
+#   env:
+#     JIRA_URL: "https://your-org.atlassian.net"
+#     JIRA_EMAIL: "your-email@company.com"
+#     JIRA_API_TOKEN: "credential:jira-lite/JIRA_API_TOKEN"
+
+# Example: Sequential thinking server (npm package)
+# sequential-thinking:
+#   command: npx
+#   args: ["-y", "@anthropic/sequential-thinking-server"]
+#   description: "Step-by-step reasoning for complex problems"

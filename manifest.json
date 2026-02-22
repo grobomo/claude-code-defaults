@@ -1,0 +1,217 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-02-22T00:00:00Z",
+  "categories": {
+    "hooks": {
+      "path": "hooks/",
+      "target": "~/.claude/hooks/",
+      "merge_strategy": "skip_existing",
+      "settings_registration": true,
+      "items": {
+        "config-awareness.js": {
+          "checksum": "sha256:0a3587a77438fb54ea2357831c7676f760046349b2f2b7fc5d2f97bc39197a92",
+          "id": "config-awareness",
+          "description": "Session start config scanner and report generator",
+          "settings_entry": {
+            "event": "SessionStart",
+            "matcher": "*",
+            "async": false
+          }
+        },
+        "instruction-stop.js": {
+          "checksum": "sha256:270a26d534f3e04a7dc8a5e49a144c92f1627373844852c6d593d457ff9b09d0",
+          "id": "instruction-stop",
+          "description": "Stop hook - checks response against Stop instructions",
+          "settings_entry": {
+            "event": "Stop",
+            "matcher": "*",
+            "async": false
+          }
+        },
+        "super-manager-check-enforcement.js": {
+          "checksum": "sha256:040ca4079688d6030280c889f0b883f869a010902aeb108be2d218a681315b72",
+          "id": "super-manager-check-enforcement",
+          "description": "PostToolUse skill usage tracker and analytics",
+          "settings_entry": {
+            "event": "PostToolUse",
+            "matcher": "Skill|Task",
+            "async": false
+          }
+        },
+        "super-manager-enforcement-gate.js": {
+          "checksum": "sha256:63e8e97eabc8db88f0a28d23ac55b6aa058a88de5592373dfc6d614b4da9eb41",
+          "id": "super-manager-enforcement-gate",
+          "description": "PreToolUse scope-aware enforcement logging",
+          "settings_entry": {
+            "event": "PreToolUse",
+            "matcher": "Bash|Edit|Write|Read|Glob|Grep|WebFetch|WebSearch",
+            "async": false
+          }
+        },
+        "tool-reminder.js": {
+          "checksum": "sha256:6f18c7c43f627a6c4e8ff9d9319f53453d1812739f430765bcc8dce4f848d1da",
+          "id": "tool-reminder",
+          "description": "Unified context injector (CLAUDE.md, skills, MCP, instructions)",
+          "settings_entry": {
+            "event": "UserPromptSubmit",
+            "matcher": "*",
+            "async": false
+          }
+        }
+      }
+    },
+    "instructions": {
+      "path": "instructions/",
+      "target": "~/.claude/instructions/",
+      "merge_strategy": "skip_existing",
+      "items": {
+        "UserPromptSubmit\\background-tasks.md": {
+          "checksum": "sha256:7155b92d0b60b3d72c35bed8f3ec697d9b75a3c88be1a80876cc0888a0194831",
+          "id": "background-tasks",
+          "description": ""
+        },
+        "UserPromptSubmit\\config-awareness.md": {
+          "checksum": "sha256:5b68e60e67100343e80086a282c18b68f0acd86ad72971197397c8dae29aa30c",
+          "id": "config-awareness",
+          "description": ""
+        },
+        "UserPromptSubmit\\credential-management.md": {
+          "checksum": "sha256:24a101cb94bc223abcaab8e7295054d074208b6709e1ddd228808efd03429a06",
+          "id": "credential-management",
+          "description": ""
+        },
+        "UserPromptSubmit\\no-emojis-use-ascii.md": {
+          "checksum": "sha256:05e00a82056c7fe3957e81857d1e4bf900b9a2970e9b403a5149e8d470ea8df4",
+          "id": "no-emojis-use-ascii",
+          "description": ""
+        },
+        "UserPromptSubmit\\review-instructions.md": {
+          "checksum": "sha256:e7f12a0e21fb101b7f937e6dc024d5876360d8ea058324f41fa243e7da38295e",
+          "id": "review-instructions",
+          "description": ""
+        },
+        "UserPromptSubmit\\use-existing-tools.md": {
+          "checksum": "sha256:5ed1c8635c73b4f27ecf2ac3f610e27bc777964b0dcd605429336e8dbc33cad1",
+          "id": "use-existing-tools",
+          "description": ""
+        },
+        "UserPromptSubmit\\writing-instructions.md": {
+          "checksum": "sha256:e7b05e70d719f57830fedb72092a50f0fd9ec1b3a5000e1de3768836840587e8",
+          "id": "writing-instructions",
+          "description": ""
+        },
+        "Stop\\fix-without-asking.md": {
+          "checksum": "sha256:ae0da8bcaddd113c8ad921d8e941441bc0fcfee4fca64cffe207046399aecb0a",
+          "id": "fix-without-asking",
+          "description": ""
+        },
+        "Stop\\no-reconfirm.md": {
+          "checksum": "sha256:db2736c04db4d505591eb332cc0b64344f6c68a478f9db734ad8d45a70c4075b",
+          "id": "no-reconfirm",
+          "description": ""
+        },
+        "Stop\\test-before-done.md": {
+          "checksum": "sha256:c83942b7cdf14553a48bd77cea4ac2868bbcbc3e79844ae3ce151c4e466af773",
+          "id": "test-before-done",
+          "description": ""
+        }
+      }
+    },
+    "skills": {
+      "path": "skills/",
+      "target": "~/.claude/skills/",
+      "merge_strategy": "skip_existing",
+      "items": {
+        "credential-manager/": {
+          "checksum": "sha256:1fb536a5d899a01a4ea1b43a8c87502877cb393aded2b57113e122970110685b",
+          "id": "credential-manager",
+          "is_directory": true,
+          "description": ""
+        },
+        "hook-manager/": {
+          "checksum": "sha256:05457dbdead45a466fda8ae3f3e311df9035a2f2853c9d857c5b4fb28f641f81",
+          "id": "hook-manager",
+          "is_directory": true,
+          "description": ""
+        },
+        "instruction-manager/": {
+          "checksum": "sha256:25eb603f5ad381da11d2bfcfc8c8b1c9be7f970a30a0f299ab60fe40f613a493",
+          "id": "instruction-manager",
+          "is_directory": true,
+          "description": ""
+        },
+        "mcp-manager/": {
+          "checksum": "sha256:b97b31024401b54f8920d67cfd62a6e7196ba8e4f9e52d3c38e7934bce65c857",
+          "id": "mcp-manager",
+          "is_directory": true,
+          "description": ""
+        },
+        "skill-manager/": {
+          "checksum": "sha256:d5f5f29ef3f56e0f56dc926ba9707508e630829d0fa8601094ae8320083a3ba3",
+          "id": "skill-manager",
+          "is_directory": true,
+          "description": ""
+        },
+        "super-manager/": {
+          "checksum": "sha256:b1b330aa104e20f8b9d15aa848c3a4c8aea628b35f5def4f30acada81a4eaab7",
+          "id": "super-manager",
+          "is_directory": true,
+          "description": ""
+        }
+      }
+    },
+    "credentials": {
+      "path": "credentials/",
+      "target": "~/.claude/skills/credential-manager/",
+      "merge_strategy": "skip_existing",
+      "items": {
+        "claude-cred.js": {
+          "checksum": "sha256:096895c2a602dfe1ca63f5614e173abe772d9c750772be05e4015ddd3572d267",
+          "id": "claude-cred"
+        },
+        "claude_cred.py": {
+          "checksum": "sha256:ac4c6cb43411e5815d3c1685e20b54473f413d860836010a2edcd13e94857143",
+          "id": "claude_cred"
+        },
+        "cred_cli.py": {
+          "checksum": "sha256:3e83d1201c5dbea76303f2dc0f54479a3a10a71486e3783ad581d607b20d1a6a",
+          "id": "cred_cli"
+        },
+        "credential-registry-template.json": {
+          "checksum": "sha256:6a3a4ca7ad3445154c52e99b379a48d6f65f291ea3e98d696886059769cbb749",
+          "id": "credential-registry-templateon"
+        },
+        "securify.py": {
+          "checksum": "sha256:6b8667726e15f1d10b548e3fe4bb77f8f881958062ec003f89bb9e92ab12120d",
+          "id": "securify"
+        },
+        "store_gui.py": {
+          "checksum": "sha256:c151b22976d1cdc6a0b41fa4aa7490f7db0e38e9f7b421c36340f6c3da90c9b1",
+          "id": "store_gui"
+        }
+      }
+    },
+    "mcp": {
+      "path": "mcp/",
+      "target": null,
+      "merge_strategy": "merge_entries",
+      "items": {
+        "servers-defaults.yaml": {
+          "checksum": "sha256:8cb8033be975418a0e33aa8079a73fb66644502b6ff0b1ec2ebdc24be9a73460",
+          "id": "servers-defaults"
+        }
+      }
+    },
+    "claude-md": {
+      "path": "claude-md/",
+      "target": "~/.claude/",
+      "merge_strategy": "skip_existing",
+      "items": {
+        "CLAUDE.md": {
+          "checksum": "sha256:26d2d67bd9b75e40243f7f64f6f4414fa74ae5a077b7816e6e2bb9c9f671c194",
+          "id": "global-claude-md"
+        }
+      }
+    }
+  }
+}
