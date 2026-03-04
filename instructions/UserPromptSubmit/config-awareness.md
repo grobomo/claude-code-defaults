@@ -1,9 +1,10 @@
 ---
 id: config-awareness
 name: Config Awareness System
-keywords: [config, awareness, hash, registry, hook, skill, report, settings]
-enabled: true
+keywords: [config, report, drift, hash, registry, settings]
 description: Config Awareness System - auto-loads config state, detects changes mid-session
+action: Detect config changes and load config-report.md into context
+enabled: true
 ---
 
 # Config Awareness System

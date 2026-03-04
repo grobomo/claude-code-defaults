@@ -1,9 +1,10 @@
 ---
 id: use-existing-tools
 name: Use Existing Tools First
-keywords: [create, add, make, build, remember, rule, hook, new, install, setup, configure, write]
+keywords: [existing, tools, check, build, reinvent, remember]
 enabled: true
 priority: 99
+action: Check CLAUDE.md Tool Routing before building anything new
 ---
 # STOP: Check Existing Tools First
 
@@ -19,10 +20,10 @@ Claude's training defaults to building from scratch (create hooks, write files, 
 
 ## Key Principles
 
-- **Persistent rules → instruction-manager** (NEVER a hook, NEVER CLAUDE.md)
-- **"When X do Y" → instruction file** (NEVER a hook, NEVER CLAUDE.md)
+- **Persistent rules → rule-manager** (NEVER a hook, NEVER CLAUDE.md)
+- **"When X do Y" → rule file** (NEVER a hook, NEVER CLAUDE.md)
 - **Config management → super-manager ecosystem** (see `~/.claude/skills/super-manager/SKILL.md` for full capabilities)
-- **Hook/skill/MCP/instruction CRUD → use the matching sub-manager skill**
+- **Hook/skill/MCP/rule CRUD → use the matching sub-manager skill**
 
 ## Where to Find What Exists
 
@@ -30,7 +31,7 @@ Claude's training defaults to building from scratch (create hooks, write files, 
 |-----------------|---------|
 | Full ecosystem overview | `~/.claude/skills/super-manager/SKILL.md` |
 | Hook management | `~/.claude/skills/hook-manager/SKILL.md` |
-| Instruction management | `~/.claude/skills/instruction-manager/SKILL.md` |
+| Rule management | `~/.claude/skills/rule-manager/SKILL.md` |
 | Skill management | `~/.claude/skills/skill-manager/SKILL.md` |
 | Credential management | `~/.claude/skills/credential-manager/SKILL.md` |
 | MCP server management | `~/.claude/skills/mcp-manager/SKILL.md` |

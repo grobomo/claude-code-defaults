@@ -1,0 +1,187 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "0",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+    "GOOGLE_GEMINI_BASE_URL": "https://api.rdsec.trendmicro.com/prod/aiendpoint",
+    "NANO_BANANA_MODEL": "gemini-3-pro-image"
+  },
+  "model": "opus",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/sm-userpromptsubmit.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/tool-reminder.js\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/sm-sessionstart.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/skill-manager-session.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-check-update.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-intel-session.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "TRIGGER=SessionStart bash \"$HOME/.claude/skills/claude-backup/backup.sh\"",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "TRIGGER=SessionEnd bash \"$HOME/.claude/skills/claude-backup/backup.sh\"",
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/session-end-report.js\"",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-intel-index.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-verifier-check.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Skill|Task|mcp__mcp-manager__mcpm",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/sm-posttooluse.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Skill|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/super-manager-check-enforcement.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/skill-usage-tracker.js\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|Read|Glob|Grep|WebFetch|WebSearch|mcp__mcp-manager__mcpm",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/sm-pretooluse.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Edit|Write|Read|Glob|Grep|WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/super-manager-enforcement-gate.js\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/sm-stop.js\""
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "super-manager@grobomo-marketplace": true,
+    "gemini-image-gen@ai-skill-marketplace": true,
+    "genisys-sdlc@ai-skill-marketplace": true,
+    "google-style-guides@ai-skill-marketplace": true,
+    "interview-tools@ai-skill-marketplace": true,
+    "ciso-office-tw-lab-helper@ai-skill-marketplace": true,
+    "mitre-tools@ai-skill-marketplace": true,
+    "l2-automation@ai-skill-marketplace": true,
+    "wiki-tools@ai-skill-marketplace": true,
+    "service-doc-generator@ai-skill-marketplace": true,
+    "marketplace-builder@ai-skill-marketplace": true,
+    "dsa-development@ai-skill-marketplace": true,
+    "frontend-design@claude-code-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "antonbabenko": {
+      "source": {
+        "source": "github",
+        "repo": "antonbabenko/terraform-skill"
+      }
+    },
+    "hashicorp": {
+      "source": {
+        "source": "github",
+        "repo": "hashicorp/agent-skills"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  }
+}

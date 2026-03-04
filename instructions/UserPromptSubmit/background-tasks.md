@@ -1,12 +1,14 @@
 ---
 id: background-tasks
 name: Background Task Management
-keywords: [background, parallel, async, deploy, build, zombie, task]
-enabled: true
+keywords: [background, parallel, async, agent, task]
+tools: []
 description: Background task management and zombie prevention
+action: Save task IDs and clean up hung background processes
+enabled: true
 ---
 
-# Background Task Instructions
+# Background Task Rules
 
 When starting background tasks:
 1. **SAVE the returned task_id** immediately
