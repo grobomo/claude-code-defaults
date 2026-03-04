@@ -1,0 +1,5 @@
+{
+  "version": "1.0",
+  "skills": [],
+  "note": "Populated at runtime by skill-manager. Do not ship pre-populated."
+}

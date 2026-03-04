@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+config/backups/
+config/repos/
+config/staging/
+config/installed.json
+config/pending.json
+credentials/archived-credentials.jsonl
+credentials/credential-registry.json
+logs/
+state/
+reports/
+registries/
