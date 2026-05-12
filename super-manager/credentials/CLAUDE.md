@@ -37,8 +37,8 @@ loadEnvFile(__dirname + '/.env');
 Non-secrets stay plaintext. Secrets use `credential:` prefix:
 
 ```
-CONFLUENCE_URL=https://trendmicro.atlassian.net/wiki
-CONFLUENCE_USERNAME=joel@trendmicro.com
+CONFLUENCE_URL=https://yourorg.atlassian.net/wiki
+CONFLUENCE_USERNAME=user@example.com
 CONFLUENCE_API_TOKEN=credential:wiki-lite/CONFLUENCE_API_TOKEN
 ```
 

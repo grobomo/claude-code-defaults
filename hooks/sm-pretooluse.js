@@ -105,7 +105,7 @@ function moduleEnforcementGate(hookData) {
   // Check for authenticated URL misrouting
   var AUTHENTICATED_DOMAINS = [
     'atlassian.net', 'confluence', 'jira', 'trello.com',
-    'portal.xdr.trendmicro.com', 'portal.trendmicro.com'
+    'portal.example-xdr.com', 'portal.example-vendor.com'
   ];
   var authUrlBlock = false;
   if (toolName === 'WebFetch' || toolName === 'WebSearch') {
